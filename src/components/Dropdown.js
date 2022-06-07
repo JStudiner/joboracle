@@ -6,16 +6,15 @@ import { CHANGE_RESPONSE } from '../redux/actions';
 
 export default function Dropdown(question) {
 const [response, setResponse] = useState('');
-const id=question.id;
+
 const dispatch=useDispatch();
-const handleChange = (event,id) => {
-  console.log(event)
+const handleChange = (event) => {
     setResponse(event.target.value)
     dispatch({
         type: CHANGE_RESPONSE,
         payload:{
-            id: id,
-          value:event.target.value
+            id: question.id,
+            value:event.target.value
         }
     })
  }

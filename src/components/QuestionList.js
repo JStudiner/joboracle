@@ -6,9 +6,8 @@ import Questionbox from './Questionbox';
 const styles=makeStyles(() =>( {
     root:
     {
-    margin: 20,
-    padding:20,
-    backgroundColor: "rgb(220,220,220)"
+    
+    backgroundColor: "white"
     }
 }));
 export default function QuestionList() {
@@ -19,7 +18,7 @@ export default function QuestionList() {
         }
     })
   return (
-    <Box className={classes.root}>{console.log("hello")}
+    <Box className={classes.root}>
                 <List>
                 {questions.map((question) => {
                     if(question.id==4){

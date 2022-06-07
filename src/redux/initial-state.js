@@ -1,14 +1,14 @@
 export const initialState={
-    surveyResults: [{
+    surveyResults: {
         id:0,
         jobtype: 0,
         jobid: 0,
         score: 0,
         completed: false,
         result: false,
-
+        threshold: 0
     },
-    ],
+    
     questions:[{
         id:0,
         text: "What company are you applying to?",
@@ -16,8 +16,8 @@ export const initialState={
         placeholder: "Company",
         responses: [{name: "Google", id: 0},{ name:"Meta", id: 1},{ name:"Netflix", id: 2},{ name:"Tesla", id: 3},{ name:"Amazon", id: 4},{ name:"Microsoft", id: 5},{ name:
         "Apple", id: 6},{ name:"SalesForce", id: 7},{ name:"Uber", id: 8},{ name:"Twitter", id: 9},{ name:"Airbnb", id: 10},{ name:
-        "Other (Large Company)", id: 13},{ name:" Other(Mid-sized Company)", id: 14},{ name:
-        " Other(Startup)", id: 11},{ name:"Unpaid Internship",id:12}],
+        "Other (Large Company)", id: 13},{ name:"Other(Mid-sized Company)", id: 14},{ name:
+        "Other(Startup)", id: 11},{ name:"Unpaid Internship",id:12}],
         response: "",
     },
 
@@ -73,6 +73,14 @@ export const initialState={
     {
         id:7,
         text: "Have you completed all of Algoexpert?",
+        type: 1,
+        positive: "Yes",
+        negative: "No",
+        good: false
+    },
+    {
+        id:8,
+        text: "Is your name Maddy Prowse?",
         type: 1,
         positive: "Yes",
         negative: "No",

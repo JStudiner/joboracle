@@ -1,9 +1,12 @@
 import {initialState} from './initial-state'
-import {CHANGE_GOOD,UPDATE_RESULT, UPDATE_SCORE,RESET,COMPLETED,TOGGLE_QUESTION_COMPLETED,CHANGE_RESPONSE} from "./actions"
-import shortid from 'shortid';
+import {CHANGE_GOOD,UPDATE_RESULT, UPDATE_SCORE,RESET,TOGGLE_QUESTION_COMPLETED,CHANGE_RESPONSE} from "./actions"
 
 function reducer(state=initialState,action){
+    
     switch(action.type){
+        case RESET:{
+            return initialState
+        }
         case UPDATE_RESULT:{
             return state
         }
@@ -24,10 +27,8 @@ function reducer(state=initialState,action){
             return newState
         }
         case CHANGE_RESPONSE:{
-            console.log(action.payload.value)
             const newQuestions=state.questions
             newQuestions[action.payload.id].response=action.payload.value
-            console.log(newQuestions)
             const newState={
                 ...state,
                 questions: newQuestions
