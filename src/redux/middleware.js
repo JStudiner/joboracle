@@ -7,6 +7,6 @@ export function* updateScore(){
     });
 }
 
-export default function*(){
+export default function* hello(){
     yield* updateScore()
 }

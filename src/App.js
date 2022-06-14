@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Paper, Toolbar, Typography,Container,Divider,Button } from "@material-ui/core";
+import { AppBar, Box, IconButton, Paper, Toolbar, Typography,Container } from "@material-ui/core";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import {makeStyles} from "@material-ui/core";
 import React from "react";
@@ -106,17 +106,6 @@ export default function Todos(){
         </Box>
 
     </Box>)
-}
-
-
-var divStyle = {
-  position: "absolute",
-  top: 0,
-  right: 0,
-  bottom: 0,
-  left: 0,
-  margin: 0,
-  padding: 0
 }
 
 var imageStyle ={

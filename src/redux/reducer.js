@@ -15,7 +15,7 @@ function reducer(state=initialState,action){
             return state
         }
         case TOGGLE_QUESTION_COMPLETED:{
-            const newQuestions=state.questions.map(question=>{if(question.id==action.payload.id){
+            const newQuestions=state.questions.map(question=>{if(question.id===action.payload.id){
                 question.completed=!question.completed;
             }
                 return question

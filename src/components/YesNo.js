@@ -10,7 +10,7 @@ export default function YesNo(question) {
     })
     const handleChange= (event) => {
         
-        if(no==false && yes==false){
+        if(no===false && yes===false){
            
             setState({
                 ...state,

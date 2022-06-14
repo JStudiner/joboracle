@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import {store} from "./redux/store"
 import ConnectedApp from "./app"
-import { composeWithDevTools } from 'redux-devtools-extension';
 const App =()=>{
     return <Provider store={store}>
         <ConnectedApp/>

@@ -3,14 +3,14 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { AppBar, IconButton, Paper, Toolbar,Container,Divider } from "@material-ui/core";
+import { Paper} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
 import { useSelector } from 'react-redux';
 import MagicBall from './components/MagicBall'
 import { useReducer } from 'react';
-import SelectInput from '@material-ui/core/Select/SelectInput';
+
 import { createTheme,ThemeProvider} from '@mui/material/styles';
-import { borderRadius } from '@mui/system';
+
 
 const theme = createTheme({
   status: {
@@ -117,11 +117,10 @@ const styles=makeStyles((theme)=>({
 export default function BasicModal() {
     const firstUpdate =React.useRef(true);
 
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-    const [firstOpen,setFirstOpen]=React.useState(false)
+    
     const [allGood, setAllGood] = React.useState(true);
     const [open, setOpen] = React.useState(false);
-    const [success, setSuccess]= React.useState(false);
+   
     const[score,setScore]=React.useState(0);
     const[threshold,setThreshold]=React.useState(0);
     const {questions}=useSelector((state) => {
@@ -146,7 +145,6 @@ export default function BasicModal() {
         if(!flag){
             renderErrorMessage()
         }
-        setFirstOpen(true)
 
         
     }
@@ -174,7 +172,7 @@ export default function BasicModal() {
     }
     
     const renderErrorMessage=() => {
-        if(allGood==false)
+        if(allGood===false)
         return (
             
             <Typography variant="h6" className={classes.errorText}>

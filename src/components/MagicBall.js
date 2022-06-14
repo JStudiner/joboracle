@@ -1,13 +1,11 @@
 import React from 'react'
 import './MagicBall.css'
-import { Typography, IconButton, Paper, Toolbar,Container,Divider } from "@material-ui/core";
+import { Typography, IconButton } from "@material-ui/core";
 
 
 export default function MagicBall(energy) {
     console.log(energy.energy)
-    const [spin,setSpin]=React.useState(false);
     const [index, setIndex] = React.useState(0);
-    const [success, setSuccess]= React.useState(false);
     const [answer,setAnswer]= React.useState("8");
     const goodAnswers = [
         'It is certain',
@@ -31,7 +29,6 @@ export default function MagicBall(energy) {
       ];
       
       const handleSpin=()=>{
-        setSpin(true)
         setIndex(Math.floor(Math.random()*(7-1)+1)) 
         console.log(energy)
         
