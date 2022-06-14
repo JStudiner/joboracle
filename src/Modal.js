@@ -7,7 +7,6 @@ import { Paper} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
 import { useSelector } from 'react-redux';
 import MagicBall from './components/MagicBall'
-import { useReducer } from 'react';
 
 import { createTheme,ThemeProvider} from '@mui/material/styles';
 
