@@ -19,6 +19,7 @@ export const initialState={
         "Other (Large Company)", id: 13},{ name:"Other(Mid-sized Company)", id: 14},{ name:
         "Other(Startup)", id: 11},{ name:"Unpaid Internship",id:12}],
         response: "",
+        answered: false
     },
 
     {
@@ -29,13 +30,25 @@ export const initialState={
         responses:[{name: "Internship", id: 0},{ name:"Junior Dev", id: 1},{ name:"Senior Dev", id: 2},{ name:"Techlead", id: 3},
       ],
         response: "",
+        answered: false
     },{
         id:2,
         text: "What school do you attend/have you attended?",
         type:1,
         positive: "MIT, Carnegie Mellon, Stanford, UC Berkely, or Cornell",
         negative: "Other",
-        good: false
+        good: false,
+        answered: false
+    },
+    {
+        id:8,
+        text: "Years of Experience?",
+        type: 0,
+        placeholder: "None",
+        responses:[{name: "0", id: 0},{ name:"1-2", id: 1},{ name:"2-5", id: 2},{ name:"5+", id: 3},
+      ],
+        response: "",
+        answered: false
     },
     {
         id:3,
@@ -43,7 +56,8 @@ export const initialState={
         type: 1,
         positive: "Yes",
         negative: "No",
-        good: false
+        good: false,
+        answered: false
     },
     {
         id:4,
@@ -51,7 +65,8 @@ export const initialState={
         type: 1,
         positive: "Yes",
         negative: "No",
-        good: false
+        good: false,
+        answered: false
     },
     {
         id:5,
@@ -59,16 +74,18 @@ export const initialState={
         type: 1,
         positive: "Yes",
         negative: "No",
-        good: false
+        good: false,
+        answered: false
     },
     {
         id:6,
         text: "How many hackathons have you won?",
         type: 0,
-        placeholder: "",
-        responses:[{ name:"None", id:0},{ name:"A few", id: 1},{ name:"Several", id: 2},
+        placeholder: "None",
+        responses:[{ name:"None", id:0},{ name:"A few", id: 1},{ name:"Several", id: 2},{ name:"Too many to count", id: 3},
       ],
         response: "",
+        answered: false
     },
     {
         id:7,
@@ -76,16 +93,10 @@ export const initialState={
         type: 1,
         positive: "Yes",
         negative: "No",
-        good: false
+        good: false,
+        answered: false
     },
-    {
-        id:8,
-        text: "Is your name Maddy Prowse?",
-        type: 1,
-        positive: "Yes",
-        negative: "No",
-        good: false
-    },
+    
     
 ]
 }

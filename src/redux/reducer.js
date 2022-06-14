@@ -29,6 +29,7 @@ function reducer(state=initialState,action){
         case CHANGE_RESPONSE:{
             const newQuestions=state.questions
             newQuestions[action.payload.id].response=action.payload.value
+            newQuestions[action.payload.id].answered=true
             const newState={
                 ...state,
                 questions: newQuestions
@@ -37,6 +38,7 @@ function reducer(state=initialState,action){
         }
         case CHANGE_GOOD:{
             const newQuestions=state.questions;
+            newQuestions[action.payload.id].answered=true
             newQuestions[action.payload.id].good=action.payload.value
             const newState={
                 ...state,

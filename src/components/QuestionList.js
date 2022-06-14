@@ -23,11 +23,11 @@ export default function QuestionList() {
                 {questions.map((question) => {
                     if(question.id==4){
                         if(questions[3].good===true){
-                            return <Questionbox  {...question} />
+                            return <Questionbox key={question.id}  {...question} />
                         }
                     }
                     else{
-                    return <Questionbox  {...question} />
+                    return <Questionbox  key={question.id} {...question} />
                     }
                 }
                 )}

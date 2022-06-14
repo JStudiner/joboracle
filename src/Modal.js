@@ -8,6 +8,28 @@ import {makeStyles} from "@material-ui/core";
 import { useSelector } from 'react-redux';
 import MagicBall from './components/MagicBall'
 import { useReducer } from 'react';
+import SelectInput from '@material-ui/core/Select/SelectInput';
+import { createTheme,ThemeProvider} from '@mui/material/styles';
+import { borderRadius } from '@mui/system';
+
+const theme = createTheme({
+  status: {
+    danger: '#e53e3e',
+  },
+  palette: {
+    primary: {
+      main: '#0971f1',
+      darker: '#053e85',
+    },
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+    submitBut:{
+        main:'#757de8'
+    }
+  },
+});
 const styles=makeStyles((theme)=>({
     root:{
     position: "absolute",
@@ -43,13 +65,11 @@ const styles=makeStyles((theme)=>({
        backgroundColor: '#757de8'
     },
     submitButton:{
-        border: "3px solid #002984",
-        backgroundColor: '#757de8'
-
+        color: '#757de8',
+        paddingBottom: 20
     },
     submitText:{
-        
-        color: 'white'
+        color:"white"
     },
     score: {
         position: 'absolute',
@@ -58,11 +78,12 @@ const styles=makeStyles((theme)=>({
         transform: 'translate(-50%, -50%)',
         width: 400,
         backgroundColor: 'white',
-        border: '2px solid #000',
+        border: '10px solid #757de8',
         boxShadow: 24,
         p: 4,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius:"5%"
     },
     wheel:{
                 display: 'flex',
@@ -83,15 +104,22 @@ const styles=makeStyles((theme)=>({
         justifyContent:"center"
     },
     outerPaper:{
-        verticalAlign:"middle"
+        verticalAlign:"middle",
+        
+    },
+    errorText:{
+        color:"red"
     }
     
 }))
 
 
 export default function BasicModal() {
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const firstUpdate =React.useRef(true);
 
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const [firstOpen,setFirstOpen]=React.useState(false)
+    const [allGood, setAllGood] = React.useState(true);
     const [open, setOpen] = React.useState(false);
     const [success, setSuccess]= React.useState(false);
     const[score,setScore]=React.useState(0);
@@ -102,27 +130,70 @@ export default function BasicModal() {
         }
     })
     const handleOpen = () => {
+        console.log("hello")
         setThreshold(calcThreshold(questions))
         setScore(calcScore(questions))
-        handleActualOpen()
+        var flag=true;
+        for(let i=0;i<questions.length;i++){
+
+            if(!questions[i].answered){
+                console.log("hello")
+                flag=false
+            }
+        }
+        setAllGood(flag)
+        
+        if(!flag){
+            renderErrorMessage()
+        }
+        setFirstOpen(true)
+
         
     }
+    React.useEffect(() => {
+        console.log(allGood)
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+          }
+        
+        if(allGood){
+            handleActualOpen()
+            
+        }
+    },[allGood]
+    )
     const handleActualOpen=()=>{
+       
         setOpen(true);
     }
-    const handleClose = () => setOpen(false);
     
+    const handleClose = () => {
+        setOpen(false);
+        setAllGood(null);
+    }
     
+    const renderErrorMessage=() => {
+        if(allGood==false)
+        return (
+            
+            <Typography variant="h6" className={classes.errorText}>
+                How do you expect to get a job if you can't even answer all of these questions?
+            </Typography>
+        )
+        
+    }
   const classes=styles();
   return (
-    <Paper className={classes.outerPaper}>{console.log(score>threshold)}
-        <IconButton onClick={handleOpen} className={classes.submitButton} color="inherit">
+    <ThemeProvider theme={theme}>
+    <Paper className={classes.outerPaper}>
+        <Button onClick={handleOpen} className={classes.submitButton}  color="submitBut" variant= "contained">
                 <img src="ballIcon.png" alt="Todos logo" style={imageStyle}></img>
                     <Typography variant="h6" className={classes.submitText}>
                         Calculate Chances
                     </Typography>
                 <img src="ballIcon.png" alt="Todos logo" style={imageStyle}></img>
-        </IconButton>
+        </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -136,21 +207,27 @@ export default function BasicModal() {
             <MagicBall  energy={score>threshold}/>
                 
         </Box>
-
-      </Modal>
+          
+      </Modal>  
+      {renderErrorMessage()}
     </Paper>
+    </ThemeProvider>
   );
 }
 function calcScore(questions){
     var runningScore=0
     if(questions[2].good)runningScore+=500
-    if(questions[3].good)runningScore+=2000
-    if(!questions[4].good && questions[3].good)runningScore-=2000
-    if(questions[5].good) runningScore+=750
-    if(questions[6].response===questions[6].responses[0].name)runningScore+=0
-    else if(questions[6].response===questions[6].responses[1].name) runningScore+=250
-    else if(questions[6].response===questions[6].responses[2].name) runningScore+=750
-    if(questions[7].good)runningScore+=750
+    if(questions[4].good)runningScore+=2000
+    if(!questions[5].good && questions[3].good)runningScore-=2000
+    if(questions[6].good) runningScore+=750
+    if(questions[7].response===questions[7].responses[1].name) runningScore+=250
+    else if(questions[7].response===questions[7].responses[2].name) runningScore+=750
+    else if(questions[7].response===questions[7].responses[3].name) runningScore+=1500
+    if(questions[3].response===questions[3].responses[1].name) runningScore+=250
+    else if(questions[3].response===questions[3].responses[2].name) runningScore+=750
+    else if(questions[3].response===questions[3].responses[3].name) runningScore+=1500
+
+    if(questions[8].good)runningScore+=750
     return runningScore
 }
 function calcThreshold(questions){

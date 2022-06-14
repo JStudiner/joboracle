@@ -34,7 +34,7 @@ const handleChange = (event) => {
     {
         question.responses.map((response) => {
                     
-                    return <MenuItem value={response.name}>{response.name}</MenuItem>
+                    return <MenuItem key={response.id} value={response.name}>{response.name}</MenuItem>
                 }
         )}
   

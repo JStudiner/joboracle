@@ -20,6 +20,7 @@ const styles= makeStyles((theme)=>({
         paddingLeft: 100,
         paddingRight:100,
         marginTop:50,
+        
         borderRadius: "50px"
     },
     wrapper:{
@@ -77,13 +78,13 @@ export default function Todos(){
     return(<Box className={classes.root} sx={{flexGrow: 1}}>
        <AppBar position="static">
            <Toolbar>
-                <IconButton edge="start" color ="inherit" size="large" >
+                <IconButton edge="start" color ="inherit"  >
                     <img src="ballIcon.png" alt="Todos logo" style={imageStyle}></img>
                 </IconButton>
                 <Typography variant="h5">
                     JobOracle
                 </Typography>
-                <IconButton onClick={handleReset}edge="right" color ="inherit" className={classes.reset}>
+                <IconButton onClick={handleReset}edge="end" color ="inherit" className={classes.reset}>
                     <Typography variant="h6">
                         Reset
                     </Typography>
