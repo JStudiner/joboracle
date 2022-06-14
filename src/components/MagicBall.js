@@ -4,7 +4,6 @@ import { Typography, IconButton } from "@material-ui/core";
 
 
 export default function MagicBall(energy) {
-    console.log(energy.energy)
     const [index, setIndex] = React.useState(0);
     const [answer,setAnswer]= React.useState("8");
     const goodAnswers = [
@@ -30,7 +29,6 @@ export default function MagicBall(energy) {
       
       const handleSpin=()=>{
         setIndex(Math.floor(Math.random()*(7-1)+1)) 
-        console.log(energy)
         
         if(energy.energy){
             setAnswer(goodAnswers[index])

@@ -114,10 +114,10 @@ const styles=makeStyles((theme)=>({
 
 
 export default function BasicModal() {
-    const firstUpdate =React.useRef(true);
+    const firstUpdate =React.useRef(false);
 
     
-    const [allGood, setAllGood] = React.useState(true);
+    const [allGood, setAllGood] = React.useState();
     const [open, setOpen] = React.useState(false);
    
     const[score,setScore]=React.useState(0);
@@ -128,14 +128,12 @@ export default function BasicModal() {
         }
     })
     const handleOpen = () => {
-        console.log("hello")
         setThreshold(calcThreshold(questions))
         setScore(calcScore(questions))
         var flag=true;
         for(let i=0;i<questions.length;i++){
 
             if(!questions[i].answered){
-                console.log("hello")
                 flag=false
             }
         }
@@ -148,18 +146,23 @@ export default function BasicModal() {
         
     }
     React.useEffect(() => {
+        console.log("whyyyy")
+        console.log(firstUpdate.current)
         console.log(allGood)
         if (firstUpdate.current) {
-            firstUpdate.current = false;
-            return;
-          }
-        
-        if(allGood){
-            handleActualOpen()
+            if(allGood){
             
+                handleActualOpen()
+                
+            }
+            
+        }else{
+            console.log("huh")
+           firstUpdate.current=true
+           return;
         }
-    },[allGood]
-    )
+    },[allGood])
+     
     const handleActualOpen=()=>{
        
         setOpen(true);

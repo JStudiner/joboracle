@@ -28,7 +28,7 @@ export default function QuestionList() {
                     else{
                     return <Questionbox  key={question.id} {...question} />
                     }
-                    return <></>
+                    return <div key={Math.random()%1000}/>
                 }
                 )}
                 </List>
