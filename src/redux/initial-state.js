@@ -66,7 +66,7 @@ export const initialState={
         positive: "Yes",
         negative: "No",
         good: false,
-        answered: false
+        answered: true
     },
     {
         id:5,
